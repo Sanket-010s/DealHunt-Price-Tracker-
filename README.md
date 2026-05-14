@@ -608,6 +608,6 @@ Project Link: [https://github.com/yourusername/price-tracker](https://github.com
 
 **⭐ Star this repo if you find it helpful!**
 
-Made with ❤️ by [Your Name](https://github.com/yourusername)
+Made with ❤️ by [Sanket Sutar & Atharv Suryawanshi](https://github.com/Sanket-010s)
 
 </div>
