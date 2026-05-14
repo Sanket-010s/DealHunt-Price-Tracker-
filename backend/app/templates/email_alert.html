@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+        body { font-family: Arial, sans-serif; line-height: 1.6; color: #333; }
+        .container { max-width: 600px; margin: 0 auto; padding: 20px; }
+        .header { background: #4CAF50; color: white; padding: 20px; text-align: center; }
+        .content { background: #f9f9f9; padding: 20px; margin: 20px 0; }
+        .price { font-size: 24px; font-weight: bold; color: #4CAF50; }
+        .old-price { text-decoration: line-through; color: #999; }
+        .button { display: inline-block; padding: 10px 20px; background: #4CAF50; color: white; text-decoration: none; border-radius: 5px; margin-top: 20px; }
+        .footer { text-align: center; color: #999; font-size: 12px; margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔔 Price Alert</h1>
+        </div>
+        <div class="content">
+            <h2>{{ product_name }}</h2>
+            <p>{{ message }}</p>
+            {% if old_price %}
+            <p>Old Price: <span class="old-price">{{ currency }}{{ "%.2f"|format(old_price) }}</span></p>
+            {% endif %}
+            {% if new_price %}
+            <p>New Price: <span class="price">{{ currency }}{{ "%.2f"|format(new_price) }}</span></p>
+            {% endif %}
+            {% if product_url %}
+            <a href="{{ product_url }}" class="button">View Product</a>
+            {% endif %}
+        </div>
+        <div class="footer">
+            <p>You're receiving this because you set up a price alert.</p>
+        </div>
+    </div>
+</body>
+</html>

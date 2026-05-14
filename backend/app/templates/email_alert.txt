@@ -1,0 +1,11 @@
+Price Alert: {{ product_name }}
+
+{{ message }}
+
+{% if old_price %}Old Price: {{ currency }}{{ "%.2f"|format(old_price) }}{% endif %}
+{% if new_price %}New Price: {{ currency }}{{ "%.2f"|format(new_price) }}{% endif %}
+
+{% if product_url %}View Product: {{ product_url }}{% endif %}
+
+---
+You're receiving this because you set up a price alert.
