@@ -264,6 +264,11 @@ python scripts/init_db.py
 
 # Run the server
 python -m uvicorn app.main:app --reload
+
+#Build Cmd
+pip install -r requirements.txt
+
+
 ```
 
 The API will be available at:
