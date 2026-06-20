@@ -4,16 +4,28 @@ from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials
 import firebase_admin
 from firebase_admin import auth, credentials
 import os
+import json
 
 # Initialize Firebase Admin if not already initialized
 try:
     if not firebase_admin._apps:
-        # Load from a service account json file or default application credentials
-        # Make sure you set FIREBASE_CREDENTIALS_PATH in your .env or just use default
-        cred = credentials.Certificate(os.getenv("FIREBASE_CREDENTIALS_PATH", "firebase-adminsdk.json"))
+        firebase_json = os.getenv("FIREBASE_SERVICE_ACCOUNT_JSON")
+        firebase_path = os.getenv("FIREBASE_CREDENTIALS_PATH")
+
+        if firebase_json:
+            # ✅ Render: load from environment variable (JSON string)
+            cred_dict = json.loads(firebase_json)
+            cred = credentials.Certificate(cred_dict)
+        elif firebase_path:
+            # ✅ Local: load from file path in .env
+            cred = credentials.Certificate(firebase_path)
+        else:
+            # ✅ Local fallback: look for file in current directory
+            cred = credentials.Certificate("firebase-adminsdk.json")
+
         firebase_admin.initialize_app(cred)
 except Exception as e:
-    print(f"Firebase admin init error (you need the service account file): {e}")
+    print(f"Firebase admin init error: {e}")
 
 security = HTTPBearer()
 
